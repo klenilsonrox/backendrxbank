@@ -17,7 +17,7 @@ const transactionSchema = new Schema({
   },
   type: {
     type: String,
-    enum: ['transferencia', 'deposito', 'saque'],
+    enum: ['transferencia', 'indicacao', 'saque'],
     required: true,
   },
   date: {

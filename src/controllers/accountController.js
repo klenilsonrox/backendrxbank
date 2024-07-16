@@ -1,5 +1,7 @@
 import Transaction from "../models/Transaction.js";
+import User from "../models/User.js";
 import { createAccountIfNotExists,getAccountByEmail,depositByEmail,transferByEmail, getAllAccounts } from "../services/accountServices.js";
+import { createContactService } from "../services/contactService.js";
 
 
 
@@ -34,7 +36,6 @@ export const depositByEmailController = async (req, res) => {
 
   try {
 
-
     const account = await depositByEmail(email, amount);
 
     
@@ -42,7 +43,7 @@ export const depositByEmailController = async (req, res) => {
      await Transaction.create({
       to:_id.toString(),
       amount,
-      type:"deposito"
+      type:"indicacao"
 
     })
 
@@ -59,18 +60,23 @@ export const depositByEmailController = async (req, res) => {
 // Controller para transferir entre contas pelo email dos usuários
 export const transferByEmailController = async (req, res) => {
   const { toEmail, amount } = req.body;
-
-
 const fromEmail = req.user.email
 const {_id} = req.user
 
-
+let userRef = _id
+let email = toEmail
 
   try {
     if(fromEmail===toEmail){
       throw new Error("você não pode transferir para você mesmo")
-      return res.status(403).json({message:"você não pode transferir para você mesmo"})
    }
+
+   const userExist = await User.findOne({email})
+
+   if(userExist){
+     await createContactService(userRef,email)
+   }
+
     const result = await transferByEmail(fromEmail, toEmail, amount);
 
     await Transaction.create({

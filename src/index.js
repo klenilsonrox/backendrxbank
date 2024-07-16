@@ -5,6 +5,7 @@ import routerAccounts from "./routes/accountRoutes.js"
 import routerUsers from "./routes/userRoutes.js"
 import routerRoutes from "./routes/transactionRoutes.js"
 import routerTransactions from "./routes/transactionRoutes.js"
+import routerContact from "./routes/contactRoutes.js"
 
 
 
@@ -16,6 +17,7 @@ app.use("/api", routerUsers)
 app.use("/api", routerAccounts)
 app.use("/api", routerRoutes)
 app.use("/api", routerTransactions)
+app.use("/api", routerContact)
 
 
 

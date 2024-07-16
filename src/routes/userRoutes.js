@@ -5,7 +5,7 @@ import { verifyUserAdmin } from "../middlewares/verifyUserAdmin.js";
 
 const router = Router()
 
-router.get("/users", authMiddleware , verifyUserAdmin, getAllUsersController)
+router.get("/users", authMiddleware , getAllUsersController)
 router.post('/users/register', registerUserController);
 router.post('/users/login', loginUserController);
 router.get('/users/me', authMiddleware, getUserController);

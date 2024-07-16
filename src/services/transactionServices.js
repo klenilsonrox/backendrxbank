@@ -2,8 +2,6 @@ import Transaction from '../models/Transaction.js';
 import User from '../models/User.js';
 import Account from '../models/Account.js';
 
-
-
 const transactionService = {
   async createTransaction(fromEmail, toEmail, amount, type) {
     try {
@@ -58,14 +56,15 @@ const transactionService = {
 
   async getAllTransactions() {
     try {
-        // Busca todas as transações e popula os campos 'from' e 'to' com os documentos de usuário correspondentes
-        const transactions = await Transaction.find()
-          .populate('to', 'name email');   // Popula com nome e email do destinatário
-        return transactions;
-      } catch (error) {
-        throw error;
-      }
-    },
+      // Busca todas as transações e popula os campos 'from' e 'to' com os documentos de usuário correspondentes
+      const transactions = await Transaction.find()
+        .populate('from', 'name email')  // Popula com nome e email do remetente
+        .populate('to', 'name email');   // Popula com nome e email do destinatário
+      return transactions;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export default transactionService;
