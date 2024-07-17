@@ -15,6 +15,11 @@ export async function getAllcontactService(){
     return contatos
 }
 
+export async function getAllcontactOneUserService(userRef){
+    const contatos = await Contato.findOne({userRef})
+    return contatos
+}
+
 export async function deleteContactService(id) {
    return await Contato.findByIdAndDelete(id);
 }

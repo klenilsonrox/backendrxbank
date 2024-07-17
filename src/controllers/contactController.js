@@ -1,4 +1,4 @@
-import { deleteContactService, getAllcontactService,updateContactService  } from "../services/contactService.js"
+import { deleteContactService, getAllcontactOneUserService, getAllcontactService,updateContactService  } from "../services/contactService.js"
 
 export const deleteContactController= async (req,res)=>{
     const {id} = req.params
@@ -20,6 +20,18 @@ export const getContactsController= async (req,res)=>{
         
     }
 }
+
+export const getContactsOnUserController= async (req,res)=>{
+    const {userRef}= req.user
+    try {
+        const contatos = await getAllcontactOneUserService(userRef)
+        return res.status(200).json(contatos)
+    } catch (error) {
+        
+    }
+}
+
+
 
 export const updateContactsController= async (req,res)=>{
     const {id}= req.params
