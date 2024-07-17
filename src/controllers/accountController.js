@@ -49,7 +49,7 @@ export const depositByEmailController = async (req, res) => {
     const type = "indicacao"
 
     const transacao = await Transaction.create({
-      from:"66975fff48852e21cfce27cb",
+      from:"6697e0f9c18bdb8ccc347798",
       to:_id,
       amount,
       type:"indicacao"
