@@ -17,7 +17,7 @@ router.post('/account', authMiddleware, createAccountIfNotExistsController);
 router.get('/account/email', authMiddleware, getAccountByEmailController);
 
 // Rota para depositar em uma conta pelo email do usuário
-router.post('/account/deposit', authMiddleware, depositByEmailController);
+router.post('/account/deposit', authMiddleware, verifyUserAdmin, depositByEmailController);
 
 // Rota para transferir entre contas pelo email dos usuários
 router.post('/account/transfer', authMiddleware, transferByEmailController);
