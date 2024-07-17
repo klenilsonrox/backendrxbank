@@ -24,7 +24,9 @@ const transactionController = {
   },
 
   async getTransactionsByUser(req, res) {
-    const userId = req.params.userId;
+    const userId= req.user._id.toString()
+
+ 
 
     try {
       const transactions = await transactionService.getTransactionsByUser(userId);

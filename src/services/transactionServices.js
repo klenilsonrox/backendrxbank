@@ -9,6 +9,9 @@ const transactionService = {
       const fromUser = await User.findOne({ email: fromEmail });
       const toUser = await User.findOne({ email: toEmail });
 
+      console.log(fromUser)
+      console.log(toUser)
+
       if (!fromUser || !toUser) {
         throw new Error('Usuário(s) não encontrado(s)');
       }
@@ -46,15 +49,26 @@ const transactionService = {
     }
   },
 
+  /**
+ * Busca todas as transações enviadas e recebidas por um usuário.
+ * @param {String} userId - ID do usuário.
+ * @returns {Array} - Lista de transações.
+ */
+
   async getTransactionsByUser(userId) {
     try {
-      const transactions = await Transaction.find({ $or: [{ from: userId }, { to: userId }] })
-        .populate('from', 'name email') // Popula os detalhes do usuário que enviou a transação
-        .populate('to', 'name email');   // Popula os detalhes do usuário que recebeu a transação
+      // Busca todas as transações onde o usuário é o remetente ou o destinatário
+      const transactions = await Transaction.find({
+        $or: [
+          { from: userId },
+          { to: userId }
+        ]
+      }).populate('from to', 'name email'); // Popula os campos from e to com nome e email dos usuários
   
       return transactions;
     } catch (error) {
-      throw error;
+      console.error('Erro ao buscar transações do usuário:', error);
+      throw new Error('Erro ao buscar transações do usuário');
     }
   },
 

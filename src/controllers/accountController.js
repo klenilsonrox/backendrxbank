@@ -79,14 +79,28 @@ let email = toEmail
 
     const result = await transferByEmail(fromEmail, toEmail, amount);
 
-    await Transaction.create({
-      to:_id.toString(),
+    // await Transaction.create({
+    //   to:_id.toString(),
+    //   amount,
+    //   type:"transferencia"
+
+    // })
+
+    const {toAccount}= result
+    const {fromAccount} = result
+    let de = fromAccount.user.toString()
+    let para = toAccount.user.toString()
+
+    const transacoes = await Transaction.create({
+      from:de,
+      to:para,
       amount,
       type:"transferencia"
-
     })
 
-    res.status(200).json({result, message:"Transferência realizada com sucesso" });
+  
+
+    res.status(200).json({result, transacoes,message:"Transferência realizada com sucesso" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
