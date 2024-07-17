@@ -83,7 +83,7 @@ let email = toEmail
    }
 
    if(amount > 5000){
-    return res.status(401).json({message:"humm, eu gosto é assim, um ladranzinho"})
+    throw new Error('Saldo insuficiente para transferência');
    }
 
     const result = await transferByEmail(fromEmail, toEmail, amount);
