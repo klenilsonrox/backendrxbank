@@ -22,9 +22,10 @@ export const getContactsController= async (req,res)=>{
 }
 
 export const getContactsOnUserController= async (req,res)=>{
-    const {userRef}= req.user
+    const {userRef}= req.user._id.toString()
+   
     try {
-        const contatos = await getAllcontactOneUserService(userRef)
+        const contatos = await getAllcontactOneUserService(req.user._id.toString())
         return res.status(200).json(contatos)
     } catch (error) {
         

@@ -16,7 +16,7 @@ export async function getAllcontactService(){
 }
 
 export async function getAllcontactOneUserService(userRef){
-    const contatos = await Contato.findOne({userRef})
+    const contatos = await Contato.find({userRef})
     return contatos
 }
 
