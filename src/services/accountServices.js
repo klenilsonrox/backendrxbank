@@ -69,6 +69,11 @@ export const depositByEmail = async (email, amount) => {
 
 // Transferir entre contas pelo email dos usuários
 export const transferByEmail = async (fromEmail, toEmail, amount) => {
+
+  if(amount <=0){
+    throw new Error("O valor deve ser maior que 0")
+  }
+
   try {
     const fromUser = await User.findOne({ email: fromEmail });
     const toUser = await User.findOne({ email: toEmail });
@@ -95,6 +100,8 @@ export const transferByEmail = async (fromEmail, toEmail, amount) => {
     if (fromAccount.balance < amount || fromAccount.balance < 0) {
       throw new Error('Saldo insuficiente');
     }
+
+
 
     fromAccount.balance -= amount;
     toAccount.balance += amount;
