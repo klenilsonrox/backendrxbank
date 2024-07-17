@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/transactions', authMiddleware, transactionController.createTransaction);
 
 // Endpoint para buscar transações de um usuário específico
-router.get('/transactions/:userId',authMiddleware, transactionController.getTransactionsByUser);
+router.get('/mytransactions',authMiddleware, transactionController.getTransactionsByUser);
 
 // Endpoint para buscar todas as transações
 router.get('/transactions', authMiddleware, transactionController.getAllTransactions);
