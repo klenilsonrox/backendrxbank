@@ -37,7 +37,7 @@ export const depositByEmailController = async (req, res) => {
   try {
 
     if(amount > 500){
-      return res.status(401).json({message:"humm, eu gosto é assim, um ladranzinho"})
+      throw new Error('Saldo insuficiente para transferência');
      }
   
 
