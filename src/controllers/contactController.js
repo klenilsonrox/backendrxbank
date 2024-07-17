@@ -4,7 +4,7 @@ export const deleteContactController= async (req,res)=>{
     const {id} = req.params
     try {
         await deleteContactService(id)
-        return res.status(200).json({message:"contato deletado com sucesso"})
+        return res.status(200).json({message:"contato deletado com sucesso!!"})
     } catch (error) {
         
     }

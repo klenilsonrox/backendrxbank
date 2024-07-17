@@ -36,11 +36,6 @@ export const depositByEmailController = async (req, res) => {
 
   try {
 
-    if(amount > 500){
-      throw new Error('Saldo insuficiente para transferência');
-     }
-  
-
     const account = await depositByEmail(email, amount);
 
     
@@ -80,10 +75,6 @@ let email = toEmail
 
    if(userExist){
      await createContactService(userRef,email)
-   }
-
-   if(amount > 5000){
-    throw new Error('Saldo insuficiente para transferência');
    }
 
     const result = await transferByEmail(fromEmail, toEmail, amount);

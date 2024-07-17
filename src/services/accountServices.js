@@ -26,12 +26,12 @@ export const createAccountIfNotExists = async (email) => {
   }
 };
 
-// Obter conta pelo email do usuário
+
 export const getAccountByEmail = async (email) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      throw new Error(`usuário com o email ${email} não encontrado!!`);
+      throw new Error(`usuário com o email ${email} não encontrado`);
     }
 
     const account = await Account.findOne({ user: user._id });
@@ -45,7 +45,7 @@ export const getAccountByEmail = async (email) => {
   }
 };
 
-// Depositar em uma conta pelo email do usuário
+
 export const depositByEmail = async (email, amount) => {
   try {
     const user = await User.findOne({ email });
@@ -67,11 +67,11 @@ export const depositByEmail = async (email, amount) => {
   }
 };
 
-// Transferir entre contas pelo email dos usuários
+
 export const transferByEmail = async (fromEmail, toEmail, amount) => {
 
   if(amount <=0){
-    throw new Error("O valor deve ser maior que 0")
+    throw new Error("O Valor deve ser maior que zero!!")
   }
 
   try {
@@ -97,11 +97,9 @@ export const transferByEmail = async (fromEmail, toEmail, amount) => {
       throw new Error(`Conta de destinatário não encontrada para usuário com o email ${toEmail}`);
     }
 
-    if (fromAccount.balance < amount || fromAccount.balance < 0) {
+    if (fromAccount.balance < amount) {
       throw new Error('Saldo insuficiente');
     }
-
-
 
     fromAccount.balance -= amount;
     toAccount.balance += amount;
