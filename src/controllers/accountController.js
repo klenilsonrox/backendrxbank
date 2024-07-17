@@ -36,6 +36,11 @@ export const depositByEmailController = async (req, res) => {
 
   try {
 
+    if(amount > 500){
+      return res.status(401).json({message:"humm, eu gosto é assim, um ladranzinho"})
+     }
+  
+
     const account = await depositByEmail(email, amount);
 
     
@@ -75,6 +80,10 @@ let email = toEmail
 
    if(userExist){
      await createContactService(userRef,email)
+   }
+
+   if(amount > 5000){
+    return res.status(401).json({message:"humm, eu gosto é assim, um ladranzinho"})
    }
 
     const result = await transferByEmail(fromEmail, toEmail, amount);

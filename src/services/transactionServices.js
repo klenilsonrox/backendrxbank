@@ -19,6 +19,10 @@ const transactionService = {
         throw new Error('Saldo insuficiente para transferência');
       }
 
+      if (amount > 500) {
+        throw new Error('Saldo insuficiente para transferência');
+      }
+
       // Cria a transação de transferência  
       const transaction = new Transaction({
         from: fromUser._id,

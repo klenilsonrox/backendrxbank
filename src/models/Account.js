@@ -10,7 +10,7 @@ const accountSchema = new Schema({
   },
   balance: {
     type: Number,
-    default: 5000, // Saldo inicial padrão de 5.000 reais
+    default: 500, // Saldo inicial padrão de 5.000 reais
   },
   createdAt: {
     type: Date,
