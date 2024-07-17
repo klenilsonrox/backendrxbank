@@ -32,20 +32,29 @@ export const getAccountByEmailController = async (req, res) => {
 // Controller para depositar em uma conta pelo email do usuário
 export const depositByEmailController = async (req, res) => {
   const { email,_id} = req.user;
-  const {amount} = req.body
+  const amount =500
 
   try {
 
+    console.log(amount,email)
+
     const account = await depositByEmail(email, amount);
 
-    
+  
+   
 
-     await Transaction.create({
-      to:_id.toString(),
+    const de = "66975fff48852e21cfce27cb"
+    const para = _id
+    const valor = 500
+    const type = "indicacao"
+
+    const transacao = await Transaction.create({
+      from:"66975fff48852e21cfce27cb",
+      to:_id,
       amount,
       type:"indicacao"
-
     })
+
 
 
 
