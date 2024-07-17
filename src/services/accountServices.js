@@ -92,7 +92,7 @@ export const transferByEmail = async (fromEmail, toEmail, amount) => {
       throw new Error(`Conta de destinatário não encontrada para usuário com o email ${toEmail}`);
     }
 
-    if (fromAccount.balance < amount) {
+    if (fromAccount.balance < amount || fromAccount.balance < 0) {
       throw new Error('Saldo insuficiente');
     }
 
