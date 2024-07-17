@@ -31,7 +31,7 @@ export const getAccountByEmail = async (email) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      throw new Error(`usuário com o email ${email} não encontrado`);
+      throw new Error(`usuário com o email ${email} não encontrado!!`);
     }
 
     const account = await Account.findOne({ user: user._id });
