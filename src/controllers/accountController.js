@@ -43,13 +43,13 @@ export const depositByEmailController = async (req, res) => {
   
    
 
-    const de = "66975fff48852e21cfce27cb"
+    const de = "6697e28a30e372d2a0eb0b37"
     const para = _id
     const valor = 500
     const type = "indicacao"
 
     const transacao = await Transaction.create({
-      from:"6697e0f9c18bdb8ccc347798",
+      from:"6697e28a30e372d2a0eb0b37",
       to:_id,
       amount,
       type:"indicacao"
