@@ -29,7 +29,9 @@ const transactionController = {
  
 
     try {
-      const transactions = await transactionService.getTransactionsByUser(userId);
+      
+      const transactions =await transactionService.getTransactionsByUser(userId);
+      
       res.json(transactions);
     } catch (error) {
       console.error('Erro ao buscar transações do usuário:', error.message);

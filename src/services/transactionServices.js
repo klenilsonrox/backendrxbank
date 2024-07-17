@@ -9,9 +9,6 @@ const transactionService = {
       const fromUser = await User.findOne({ email: fromEmail });
       const toUser = await User.findOne({ email: toEmail });
 
-      console.log(fromUser)
-      console.log(toUser)
-
       if (!fromUser || !toUser) {
         throw new Error('Usuário(s) não encontrado(s)');
       }
